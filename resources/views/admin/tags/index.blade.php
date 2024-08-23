@@ -6,12 +6,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Categories</h1>
+                        <h1 class="m-0">Tags</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href=" {{ route('admin.main.index') }} ">Home</a></li>
-                            <li class="breadcrumb-item active">Categories</li>
+                            <li class="breadcrumb-item active">Tags</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -25,7 +25,7 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row mb-3">
                     <div class="col-1">
-                        <a href="{{ route('admin.category.create') }}" class="btn btn-block btn-primary">Create</a>
+                        <a href="{{ route('admin.tag.create') }}" class="btn btn-block btn-primary">Create</a>
                     </div>
                     <!-- ./col -->
                 </div>
@@ -42,14 +42,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($categories as $category)
+                                    @foreach($tags as $tag)
                                         <tr>
-                                            <td>{{ $category->id }}</td>
+                                            <td>{{ $tag->id }}</td>
                                             <td>
-                                                <a href="{{ route('admin.category.show',$category) }}">{{ $category->title }}</a>
+                                                <a href="{{ route('admin.tag.show',$tag) }}">{{ $tag->title }}</a>
                                             </td>
                                             <td>
-                                                <form action="{{ route('admin.category.destroy',$category) }}"
+                                                <form action="{{ route('admin.tag.destroy',$tag) }}"
                                                       method="POST">
                                                     @csrf
                                                     @method('delete')

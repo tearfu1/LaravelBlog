@@ -1,29 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Category;
+namespace App\Http\Controllers\Admin\Tag;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Category\UpdateRequest;
-use App\Models\Category;
+use App\Http\Requests\Admin\Tag\StoreRequest;
+use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
 
-class UpdateController extends Controller
+class StoreController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(UpdateRequest $request, Category $category)
+    public function __invoke(StoreRequest $request)
     {
         try {
             $data = $request->validated();
             DB::beginTransaction();
-            $category->update($data);
-            $category->fresh();
+            $tag = Tag::firstOrCreate($data);
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
             return $exception->getMessage();
         }
-        return redirect()->route('admin.category.show', compact('category'));
+        return redirect()->route('admin.tag.show', compact('tag'));
     }
 }
