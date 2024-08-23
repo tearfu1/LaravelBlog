@@ -27,8 +27,14 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row mb-3">
-                    <div class="col-1">
-                        <a href="{{ route('admin.category.edit', $category) }}" class="btn btn-block btn-primary">Edit</a>
+                    <div class="col-1 d-flex">
+                        <a href="{{ route('admin.category.edit', $category) }}"
+                           class="btn btn-block btn-primary mr-3">Edit</a>
+                        <form action="{{ route('admin.category.destroy', $category) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-block btn-danger">Delete</button>
+                        </form>
                     </div>
                     <!-- ./col -->
                 </div>
