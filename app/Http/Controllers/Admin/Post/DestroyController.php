@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 
-class DestroyController extends Controller
+class DestroyController extends BaseController
 {
     /**
      * Handle the incoming request.
