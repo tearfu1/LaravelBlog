@@ -37,7 +37,7 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Title</th>
+                                        <th>Name</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -46,7 +46,7 @@
                                         <tr>
                                             <td>{{ $user->id }}</td>
                                             <td>
-                                                <a href="{{ route('admin.user.show',$user) }}">{{ $user->title }}</a>
+                                                <a href="{{ route('admin.user.show',$user) }}">{{ $user->name }}</a>
                                             </td>
                                             <td>
                                                 <form action="{{ route('admin.user.destroy',$user) }}"

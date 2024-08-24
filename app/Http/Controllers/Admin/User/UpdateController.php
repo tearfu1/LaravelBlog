@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\UpdateRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use function Laravel\Prompts\password;
 
 class UpdateController extends Controller
 {
@@ -17,6 +19,11 @@ class UpdateController extends Controller
         try {
             $data = $request->validated();
             DB::beginTransaction();
+            if($data['password']) {
+                $data['password'] = Hash::make($data['password']);
+            } else {
+                unset($data['password']);
+            }
             $user->update($data);
             $user->fresh();
             DB::commit();

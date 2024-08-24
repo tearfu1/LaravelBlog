@@ -29,9 +29,26 @@
                         <form action=" {{ route('admin.user.store') }}" method="POST" class="w-25">
                             @csrf
                             <div class="form-group">
-                                <label>Title</label>
-                                <input type="text" name="title" class="form-control" placeholder="Your beautiful title">
-                                @error('title')
+                                <label>Username</label>
+                                <input type="text" name="name" class="form-control"
+                                       placeholder="Your beautiful username">
+                                @error('name')
+                                <p class="text-danger"> {{ $message }}</p>
+                                @enderror()
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail</label>
+                                <input type="email" name="email" class="form-control"
+                                       placeholder="Your beautiful e-mail">
+                                @error('email')
+                                <p class="text-danger"> {{ $message }}</p>
+                                @enderror()
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" class="form-control"
+                                       placeholder="Your beautiful password">
+                                @error('password')
                                 <p class="text-danger"> {{ $message }}</p>
                                 @enderror()
                             </div>

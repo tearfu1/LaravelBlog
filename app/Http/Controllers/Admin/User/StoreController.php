@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class StoreController extends Controller
 {
@@ -17,7 +18,10 @@ class StoreController extends Controller
         try {
             $data = $request->validated();
             DB::beginTransaction();
-            $user = User::firstOrCreate($data);
+            $data['password'] = Hash::make($data['password']);
+            $user = User::firstOrCreate([
+                'name' => $data['name'],
+                'email' => $data['email']], $data);
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();

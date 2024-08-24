@@ -21,6 +21,6 @@ class DestroyController extends Controller
             DB::rollBack();
             return $exception->getMessage();
         }
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.user.index');
     }
 }
