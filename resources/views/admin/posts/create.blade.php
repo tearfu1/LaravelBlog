@@ -43,35 +43,48 @@
                                 <p class="text-danger"> {{ $message }}</p>
                                 @enderror()
                             </div>
-                            <div class="form-group">
-                                <label>Preview image input</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" name="preview_image" class="custom-file-input">
-                                        <label class="custom-file-label">Choose file</label>
+                            <div class="form-group w-50">
+                                <div class="form-group">
+                                    <label>Preview image input</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="preview_image" class="custom-file-input">
+                                            <label class="custom-file-label">Choose file</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
                                     </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
+                                    @error('preview_image')
+                                    <p class="text-danger"> {{ $message }}</p>
+                                    @enderror()
                                 </div>
-                                @error('preview_image')
-                                <p class="text-danger"> {{ $message }}</p>
-                                @enderror()
+                                <div class="form-group">
+                                    <label>Main image input</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="main_image" class="custom-file-input">
+                                            <label class="custom-file-label">Choose file</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
+                                    </div>
+                                    @error('main_image')
+                                    <p class="text-danger"> {{ $message }}</p>
+                                    @enderror()
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Main image input</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" name="main_image" class="custom-file-input">
-                                        <label class="custom-file-label">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
-                                </div>
-                                @error('main_image')
-                                <p class="text-danger"> {{ $message }}</p>
-                                @enderror()
+                            <div class="form-group w-25">
+                                <label>Select Category</label>
+                                <select class="form-control" name="category_id">
+                                    @foreach($categories as $category)
+                                        <option
+                                            value="{{ $category->id }}"
+                                            {{ $category->id == old('category_id') ? 'selected' : '' }}
+                                            >{{ $category->title }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-block btn-primary w-25" value="Create">
