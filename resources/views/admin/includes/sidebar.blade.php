@@ -16,6 +16,12 @@
                         <p>Tags</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.post.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-bars"></i>
+                        <p>Tags</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

@@ -6,12 +6,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Create category</h1>
+                        <h1 class="m-0">Edit category</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Home</a></li>
-                            <li class="breadcrumb-item active"><a href="{{ route('admin.category.index') }}">Category</a></li>
+                            <li class="breadcrumb-item active"><a href="{{ route('admin.category.index') }}">Categories</a></li>
                             <li class="breadcrumb-item active">Edit category</li>
                         </ol>
                     </div><!-- /.col -->
