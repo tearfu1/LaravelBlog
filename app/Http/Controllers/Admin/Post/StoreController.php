@@ -18,11 +18,14 @@ class StoreController extends Controller
         try {
             DB::beginTransaction();
             $data = $request->validated();
-            $previewImagePath = Storage::put('/images', $data['preview_image']);
-            $mainImagePath = Storage::put('/images', $data['main_image']);
+            $previewImagePath = Storage::disk('public')->put('/images', $data['preview_image']);
+            $mainImagePath = Storage::disk('public')->put('/images', $data['main_image']);
             $data['preview_image'] = $previewImagePath;
             $data['main_image'] = $mainImagePath;
+            $tagIds = $data['tag_ids'];
+            unset($data['tag_ids']);
             $post = Post::firstOrCreate($data);
+            $post->tags()->attach($tagIds);
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
