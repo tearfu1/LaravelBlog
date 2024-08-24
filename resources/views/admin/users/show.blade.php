@@ -6,15 +6,15 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Category</h1>
+                        <h1 class="m-0">User</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href=" {{ route('admin.main.index') }} ">Home</a></li>
                             <li class="breadcrumb-item active"><a
-                                    href="{{ route('admin.category.index') }}">Categories</a>
+                                    href="{{ route('admin.user.index') }}">Users</a>
                             </li>
-                            <li class="breadcrumb-item active">{{ $category->id }}</li>
+                            <li class="breadcrumb-item active">{{ $user->id }}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -28,9 +28,9 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row mb-3">
                     <div class="col-1 d-flex">
-                        <a href="{{ route('admin.category.edit', $category) }}"
+                        <a href="{{ route('admin.user.edit', $user) }}"
                            class="btn btn-block btn-primary mr-3">Edit</a>
-                        <form action="{{ route('admin.category.destroy', $category) }}" method="POST">
+                        <form action="{{ route('admin.user.destroy', $user) }}" method="POST">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-block btn-danger">Delete</button>
@@ -46,11 +46,11 @@
                                     <tbody>
                                     <tr>
                                         <td>ID</td>
-                                        <td>{{ $category->id }}</td>
+                                        <td>{{ $user->id }}</td>
                                     </tr>
                                     <tr>
                                         <td>Title</td>
-                                        <td>{{ $category->title }}</td>
+                                        <td>{{ $user->title }}</td>
                                     </tr>
                                     </tbody>
                                 </table>

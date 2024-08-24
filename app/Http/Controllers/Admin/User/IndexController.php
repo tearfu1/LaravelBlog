@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Category;
+namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -13,7 +13,7 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $categories = Category::all();
-        return view('admin.categories.index', compact('categories'));
+        $users = User::paginate(10);
+        return view('admin.users.index', compact('users'));
     }
 }

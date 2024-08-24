@@ -12,7 +12,7 @@ class IndexController extends Controller
      */
     public function __invoke()
     {
-        $tags = Tag::paginate(10);
+        $tags = Tag::all();
         return view('admin.tags.index', compact('tags'));
     }
 }
