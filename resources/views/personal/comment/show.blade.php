@@ -6,15 +6,15 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Post</h1>
+                        <h1 class="m-0">Comment</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href=" {{ route('personal.main.index') }} ">Home</a></li>
                             <li class="breadcrumb-item active"><a
-                                    href="{{ route('personal.liked.index') }}">Liked Posts</a>
+                                    href="{{ route('personal.comment.index') }}">Comments</a>
                             </li>
-                            <li class="breadcrumb-item active">{{ $post->id }}</li>
+                            <li class="breadcrumb-item active">{{ $comment->post->id }}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -28,7 +28,9 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row mb-3">
                     <div class="col-1 d-flex">
-                        <form action="{{ route('personal.liked.destroy', $post) }}" method="POST">
+                        <a href="{{ route('personal.comment.edit', $comment) }}"
+                           class="btn btn-block btn-primary mr-3">Edit</a>
+                        <form action="{{ route('personal.comment.destroy', $comment) }}" method="POST">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-block btn-danger">Delete</button>
@@ -43,12 +45,12 @@
                                 <table class="table table-head-fixed text-nowrap">
                                     <tbody>
                                     <tr>
-                                        <td>ID</td>
-                                        <td>{{ $post->id }}</td>
+                                        <td>Post ID</td>
+                                        <td>{{ $comment->post->id }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Title</td>
-                                        <td>{{ $post->title }}</td>
+                                        <td>Message</td>
+                                        <td>{{ $comment->message }}</td>
                                     </tr>
                                     </tbody>
                                 </table>

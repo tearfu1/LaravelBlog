@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Personal\Liked;
+namespace App\Http\Controllers\Personal\Comment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
@@ -14,9 +15,9 @@ class DestroyController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Post $post)
+    public function __invoke(Comment $comment)
     {
-        auth()->user()->likedPosts()->detach($post);
-        return redirect()->route('personal.liked.index');
+        $comment->delete();
+        return redirect()->route('personal.comment.index');
     }
 }

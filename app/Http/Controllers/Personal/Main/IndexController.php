@@ -16,7 +16,10 @@ class IndexController extends Controller
      */
     public function __invoke()
     {
-        $lp_count = auth()->user()->likedPosts->count();
-        return view('personal.main.index', compact('lp_count'));
+        $data = [
+            'lps_count' => auth()->user()->likedPosts->count(),
+            'comments_count' => auth()->user()->comments->count(),
+        ];
+        return view('personal.main.index', compact('data'));
     }
 }
