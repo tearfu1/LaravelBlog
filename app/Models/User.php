@@ -58,6 +58,11 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+
+    public function likedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'post_user_likes', 'user_id', 'post_id');
+    }
     public function sendEmailVerificationNotification()
     {
         $this->notify(new SendVerifyWithQueueNotification());
