@@ -19,9 +19,12 @@ class UpdateController extends Controller
         try {
             $data = $request->validated();
             DB::beginTransaction();
-            if($data['password']) {
+            if ($data['password']) {
                 $data['password'] = Hash::make($data['password']);
             } else {
+                unset($data['password']);
+            }
+            if (!$data['role']) {
                 unset($data['password']);
             }
             $user->update($data);
