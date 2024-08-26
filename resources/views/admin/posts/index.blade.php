@@ -32,11 +32,11 @@
                 <div class="row w-50">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-body table-responsive p-0" style="height: 300px;">
-                                <table class="table table-bordered table-head-fixed text-nowrap">
+                            <div class="card-body p-0">
+                                <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>Id</th>
                                         <th>Title</th>
                                         <th>Action</th>
                                     </tr>
@@ -63,9 +63,11 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="card-footer clearfix">
+                                {{ $posts->links() }}
+                            </div>
                         </div>
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
             <!-- /.row -->

@@ -32,8 +32,8 @@
                 <div class="row w-50">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-body table-responsive p-0" style="height: 300px;">
-                                <table class="table table-bordered table-head-fixed text-nowrap">
+                            <div class="card-body p-0">
+                                <table class="table table-bordered">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
@@ -62,6 +62,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="card-footer clearfix">
+                                {{ $categories->links() }}
                             </div>
                         </div>
                     </div>

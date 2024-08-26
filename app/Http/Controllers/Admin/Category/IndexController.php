@@ -13,7 +13,7 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $categories = Category::all();
+        $categories = Category::paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
 }
