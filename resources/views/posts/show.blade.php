@@ -3,7 +3,8 @@
     <main class="blog-post">
         <div class="container">
             <h1 class="edica-page-title" data-aos="fade-up">{{ $post->title }}</h1>
-            <p class="edica-blog-post-meta" data-aos="fade-up" data-aos-delay="200">{{ $date->format('F d, Y') }} • {{ $date->format('H:i') }} • {{ $post->comments->count() }} Comments</p>
+            <p class="edica-blog-post-meta" data-aos="fade-up" data-aos-delay="200">{{ $date->format('F d, Y') }}
+                • {{ $date->format('H:i') }} • {{ $post->comments->count() }} Comments</p>
             <section class="blog-post-featured-img" data-aos="fade-up" data-aos-delay="300">
                 <img src="{{ asset('/storage/'.$post->main_image) }}" alt="featured image" class="w-100">
             </section>
@@ -19,47 +20,57 @@
                     <section class="related-posts">
                         <h2 class="section-title mb-4" data-aos="fade-up">Related Posts</h2>
                         <div class="row">
-                            @foreach($relatedPosts as $post)
+                            @foreach($relatedPosts as $relatedPost)
                                 <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
-                                    <img src="{{ asset('/storage/' . $post->preview_image) }}" alt="related post" class="post-thumbnail">
-                                    <p class="post-category">{{ $post->category->title }}</p>
-                                    <h5 class="post-title">{{ $post->title }}</h5>
+                                    <img src="{{ asset('/storage/' . $relatedPost->preview_image) }}" alt="related post"
+                                         class="post-thumbnail">
+                                    <p class="post-category">{{ $relatedPost->category->title }}</p>
+                                    <h5 class="post-title">{{ $relatedPost->title }}</h5>
                                 </div>
                             @endforeach
                         </div>
                     </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto col-lg-12">
                     <section class="comment-section">
-                        <h2 class="section-title mb-5" data-aos="fade-up">Leave a Reply</h2>
-                        <form action="/" method="post">
-                            <div class="row">
-                                <div class="form-group col-12" data-aos="fade-up">
-                                    <label for="comment" class="sr-only">Comment</label>
-                                    <textarea name="comment" id="comment" class="form-control" placeholder="Comment" rows="10">Comment</textarea>
-                                </div>
+                        @foreach($post->comments as $comment)
+                            <div class="comment-text mb-3">
+                                    <span class="username">
+                                      <div class="mb-1">
+                                          {{ $comment->user->name }}
+                                      </div>
+                                      <span
+                                          class="text-muted float-right">{{ $comment->getDateAsCarbon()->diffForHumans() }}</span>
+                                    </span><!-- /.username -->
+                                {{ $comment->message }}
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-4" data-aos="fade-right">
-                                    <label for="name" class="sr-only">Name</label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Name*">
-                                </div>
-                                <div class="form-group col-md-4" data-aos="fade-up">
-                                    <label for="email" class="sr-only">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email*" required>
-                                </div>
-                                <div class="form-group col-md-4" data-aos="fade-left">
-                                    <label for="website" class="sr-only">Website</label>
-                                    <input type="url" name="website" id="website" class="form-control" placeholder="Website*">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12" data-aos="fade-up">
-                                    <input type="submit" value="Send Message" class="btn btn-warning">
-                                </div>
-                            </div>
-                        </form>
+                        @endforeach
+                        <!-- /.card-comment -->
                     </section>
                 </div>
             </div>
+            @auth()
+                <section class="comment-section">
+                    <h2 class="section-title mb-5" data-aos="fade-up">Leave a Comment</h2>
+                    <form action="{{ route('post.comment.store', $post) }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="form-group col-12" data-aos="fade-up">
+                                <label for="comment" class="sr-only">Comment</label>
+                                <textarea name="message" id="comment" class="form-control" placeholder="Comment"
+                                          rows="10">Comment</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" data-aos="fade-up">
+                                <input type="submit" value="Leave Comment" class="btn btn-warning">
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            @endauth
         </div>
     </main>
 
