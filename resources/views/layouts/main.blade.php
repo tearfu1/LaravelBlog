@@ -28,6 +28,9 @@
                         <a class="nav-link" href="{{ route('post.index') }}">Blog</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('category.index') }}">Categories</a>
+                    </li>
+                    <li class="nav-item">
                         @auth()
                             <a class="nav-link" href="{{ route('personal.main.index') }}">Personal cabinet</a>
                         @endauth
@@ -41,7 +44,7 @@
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <input type='submit' class="btn btn-block" value="Logout">
+                            <input type='submit' class="btn btn-block nav-link" value="Logout">
                         </form>
                     </li>
                 </ul>
